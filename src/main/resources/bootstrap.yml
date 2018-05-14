@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: validator
+  cloud:
+    config:
+      name: ${spring.application.name}
+      uri: http://192.168.0.12:11111

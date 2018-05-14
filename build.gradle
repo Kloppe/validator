@@ -1,0 +1,53 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.5.RELEASE'
+	}
+	repositories {
+		//maven { url 'http://glnexus.ftiao.cn/repository/maven-public' } 
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java-library'
+apply plugin: 'org.springframework.boot'
+apply plugin: "jacoco"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    //maven { url 'http://glnexus.ftiao.cn/repository/maven-public' }
+    jcenter()
+}
+
+configurations {
+ 	compile.exclude group:'ch.qos.logback'
+}
+
+dependencies {
+    runtime 'org.springframework.boot:spring-boot-starter-actuator'
+    runtime 'org.springframework.boot:spring-boot-starter-log4j2'
+    runtime 'org.springframework.cloud:spring-cloud-starter-sleuth'
+    runtime 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
+
+    compile 'org.springframework.cloud:spring-cloud-starter-config'
+    compile 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
+    compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
+    compile 'io.springfox:springfox-swagger2:2.6.1'
+    compile 'io.springfox:springfox-swagger-ui:2.6.1'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.7'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.7'
+   // compile 'com.gl365.dao:gl365-mysql-starter:0.0.1-SNAPSHOT'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+dependencyManagement {
+  imports {
+    mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Camden.SR6'
+  }
+}

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gl365.validator.mapper.SzbIdCardMapper" >
+  <resultMap id="BaseResultMap" type="com.gl365.validator.model.SzbIdCard" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="CARD_ID" property="cardId" jdbcType="VARCHAR" />
+    <result column="REQ_CONTENT" property="reqContent" jdbcType="VARCHAR" />
+    <result column="RES_CONTENT" property="resContent" jdbcType="VARCHAR" />
+    <result column="RES_CODE" property="resCode" jdbcType="VARCHAR" />
+    <result column="RES_MSG" property="resMsg" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="BIGINT" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="BIGINT" />
+    <result column="UPDATED_DATE" property="updatedDate" jdbcType="TIMESTAMP" />
+    <result column="DELETED_FLAG" property="deletedFlag" jdbcType="CHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, USER_NAME, CARD_ID, REQ_CONTENT, RES_CONTENT, RES_CODE, RES_MSG, REMARK, CREATED_BY, 
+    CREATED_DATE, UPDATED_BY, UPDATED_DATE, DELETED_FLAG
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from szb_id_card
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <insert id="insertSelective" parameterType="com.gl365.validator.model.SzbIdCard" >
+    insert into szb_id_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="cardId != null" >
+        CARD_ID,
+      </if>
+      <if test="reqContent != null" >
+        REQ_CONTENT,
+      </if>
+      <if test="resContent != null" >
+        RES_CONTENT,
+      </if>
+      <if test="resCode != null" >
+        RES_CODE,
+      </if>
+      <if test="resMsg != null" >
+        RES_MSG,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE,
+      </if>
+      <if test="deletedFlag != null" >
+        DELETED_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="reqContent != null" >
+        #{reqContent,jdbcType=VARCHAR},
+      </if>
+      <if test="resContent != null" >
+        #{resContent,jdbcType=VARCHAR},
+      </if>
+      <if test="resCode != null" >
+        #{resCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resMsg != null" >
+        #{resMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="updatedDate != null" >
+        #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        #{deletedFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.gl365.validator.model.SzbIdCard" >
+    update szb_id_card
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        CARD_ID = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="reqContent != null" >
+        REQ_CONTENT = #{reqContent,jdbcType=VARCHAR},
+      </if>
+      <if test="resContent != null" >
+        RES_CONTENT = #{resContent,jdbcType=VARCHAR},
+      </if>
+      <if test="resCode != null" >
+        RES_CODE = #{resCode,jdbcType=VARCHAR},
+      </if>
+      <if test="resMsg != null" >
+        RES_MSG = #{resMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=BIGINT},
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=BIGINT},
+      </if>
+      <if test="updatedDate != null" >
+        UPDATED_DATE = #{updatedDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedFlag != null" >
+        DELETED_FLAG = #{deletedFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selective" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from szb_id_card
+   where CARD_ID = #{cardId,jdbcType=VARCHAR}
+     and USER_NAME = #{userName,jdbcType=VARCHAR}
+   limit 1
+  </select>
+  
+</mapper>

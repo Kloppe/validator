@@ -1,0 +1,25 @@
+Configuration:
+  status: warn
+  name: Log4jYAMLConfig
+  properties:
+    property:
+      name: filename
+      value: /logs/validator.log
+  thresholdFilter:
+    level: debug
+  Appenders:
+    Console:
+      name: STDOUT
+      PatternLayout:
+        Pattern: "%d{yyyy-MM-dd HH:mm:ss} [%-5p][%t][validator - %X{X-B3-TraceId} - %X{X-B3-SpanId} - %X{X-B3-ParentSpanId}] %C{1.} [%l] - %m%n"
+    File:
+      name: File
+      fileName: ${filename}
+      PatternLayout:
+        Pattern: "%d %p [validator - %X{X-B3-TraceId} - %X{X-B3-SpanId} - %X{X-B3-ParentSpanId}] %C{1.} [%t] %m%n"
+  Loggers:
+    Root:
+      level: INFO
+      AppenderRef:
+        - ref: STDOUT
+        - ref: File
